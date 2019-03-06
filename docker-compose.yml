@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  gpload:
+    container_name: gpload
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - ./bin:/loaders

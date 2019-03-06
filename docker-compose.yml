@@ -2,10 +2,12 @@ version: '3.7'
 services:
   gpload:
     container_name: gpload
-    tty: true
-    stdin_open: true
     build:
+      args:
+        BIN_FILE: greenplum-loaders-5.17.0-rhel7-x86_64.zip
       context: .
       dockerfile: dockerfile
+    command: bash -c ". greenplum_loaders_path.sh && gpload -f extract_config.yml"
     volumes:
-      - ./bin:/loaders
+      - ./data:/data
+      - ./extract_config.yml:/build/extract_config.yml

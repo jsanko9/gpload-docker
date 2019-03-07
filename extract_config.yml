@@ -1,35 +1,17 @@
 ---
 VERSION: 1.0.0.1
-DATABASE: ops
-USER: gpadmin
-HOST: mdw-1
-PORT: 5432
 GPLOAD:
   INPUT:
     - SOURCE:
-        LOCAL_HOSTNAME:
-          - etl1-1
-          - etl1-2
-          - etl1-3
-          - etl1-4
-        PORT: 8081
         FILE:
-          - /var/load/data/*
+          - /data/input.txt
     - COLUMNS:
-        - name: text
-        - amount: float4
-        - category: text
-        - desc: text
-        - date: date
+        - one: text
+        - two: float4
     - FORMAT: text
-    - DELIMITER: '|'
     - ERROR_LIMIT: 25
     - LOG_ERRORS: true
   OUTPUT:
-    - TABLE: payables.expenses
+    - TABLE: ws_mkt_ops.js_test
     - MODE: INSERT
-  PRELOAD:
-    - REUSE_TABLES: true
-  SQL:
-    - BEFORE: "INSERT INTO audit VALUES('start', current_timestamp)"
-    - AFTER: "INSERT INTO audit VALUES('end', current_timestamp)"
+

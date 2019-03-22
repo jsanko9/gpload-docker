@@ -4,14 +4,14 @@ GPLOAD:
   INPUT:
     - SOURCE:
         FILE:
-          - /data/input.txt
+          - /data/input.csv
     - COLUMNS:
         - one: text
         - two: float4
-    - FORMAT: text
+    - FORMAT: csv
     - ERROR_LIMIT: 25
     - LOG_ERRORS: true
   OUTPUT:
-    - TABLE: ws_mkt_ops.js_test
+    - TABLE: test.table_name2
     - MODE: INSERT
 

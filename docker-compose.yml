@@ -2,17 +2,22 @@ version: '3.7'
 services:
   gpload:
     container_name: gpload
+    #network_mode: host
+    #hostname: 127.0.0.1
     env_file:
       - .env
     build:
+      network: host
       args:
         BIN_FILE: greenplum-loaders-5.17.0-rhel7-x86_64.zip
       context: .
       dockerfile: dockerfile
-    command: bash -c ". greenplum_loaders_path.sh && gpload -l /log/log_.txt -f extract_config.yml"
+#    command: bash -c ". greenplum_loaders_path.sh && gpload -v -l /log/log_.txt -f extract_config.yml"
+    command: bash -c ". greenplum_loaders_path.sh && gpfdist -p 8000 -P 9000 -f "data/input.csv" -t 30 -V"
     ports:
-      - "8000:8000"
+      - "8000-8010:8000-8010"
+      - "8733:9733"
     volumes:
-      - ./data:/data
+      - ./data:/build/data
       - ./extract_config.yml:/build/extract_config.yml
       - ./log:/log

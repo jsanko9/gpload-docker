@@ -1,6 +1,6 @@
 FROM centos
 
-MAINTAINER <juraj_sanko@dell.com>
+MAINTAINER <jsanko9@gmail.com>
 
 ARG BIN_FILE=greenplum-loaders-5.17.0-rhel7-x86_64.zip
 

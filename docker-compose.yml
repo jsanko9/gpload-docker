@@ -9,7 +9,6 @@ services:
       gp:
         aliases:
           - greenplum
-
   gpload:
     container_name: gpload
     networks:
@@ -23,7 +22,7 @@ services:
       args:
         BIN_FILE: greenplum-loaders-5.17.0-rhel7-x86_64.zip
       context: .
-      dockerfile: Dockerfile
+      dockerfile: jsanko/gpload
     command: bash -c ". greenplum_loaders_path.sh && gpload -V -l /log/log_.txt -f extract_config.yml"
 #    command: bash -c ". greenplum_loaders_path.sh && gpfdist -p 8000 -P 9000 -f "/data/input.csv" -t 30 -V"
     ports:

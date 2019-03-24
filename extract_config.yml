@@ -6,12 +6,13 @@ GPLOAD:
         FILE:
           - /data/input.csv
     - COLUMNS:
-        - one: text
-        - two: float4
+        - one: float4
+        - two: text
     - FORMAT: csv
     - ERROR_LIMIT: 25
     - LOG_ERRORS: true
   OUTPUT:
-    - TABLE: test.table_name2
+    - TABLE: public.table_name
     - MODE: INSERT
+
 
